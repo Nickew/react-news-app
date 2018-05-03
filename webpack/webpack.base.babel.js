@@ -1,5 +1,7 @@
-import path from 'path';
-import webpack from 'webpack';
+// import path from 'path';
+// import webpack from 'webpack';
+const path = require('path');
+const webpack = require('webpack');
 
 process.noDeprecation = true;
 
@@ -37,12 +39,15 @@ module.exports = (options) => ({
 				use: [
 					'file-loader',
 					{
-						progressive: true,
-						optimizationLevel: 7,
-						interlaced: false,
-						pngquant: {
-							quality: '65-90',
-							speed: 4
+						loader: 'image-webpack-loader',
+						options: {
+							progressive: true,
+							optimizationLevel: 7,
+							interlaced: false,
+							pngquant: {
+								quality: '65-90',
+								speed: 4
+							},
 						},
 					},
 				],

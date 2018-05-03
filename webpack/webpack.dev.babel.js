@@ -1,6 +1,9 @@
-import path from 'path';
-import webpack from 'webpack';
-import HtmlWebpackPlugin from 'html-webpack-plugin';
+// import path from 'path';
+// import webpack from 'webpack';
+// import HtmlWebpackPlugin from 'html-webpack-plugin';
+const path = require('path');
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const pkg = require(path.resolve(process.cwd(), 'package.json'));
 
 const plugins = [
@@ -20,10 +23,10 @@ module.exports = require('./webpack.base.babel') ({
 
 	output: {
 		filename: '[name].js',
-		chuckFilename: '[name].chunk.js',
+		chunkFilename: '[name].chunk.js',
 	},
 
-	plguins: dependencyHandlers().concat(plugins),
+	plugins: dependencyHandlers().concat(plugins),
 
 	devtool: 'eval-source-map',
 
@@ -34,11 +37,11 @@ module.exports = require('./webpack.base.babel') ({
 
 function dependencyHandlers() {
 	return [
-		new webpack.optimize.CommonsChunkPlguin({
+		new webpack.optimize.CommonsChunkPlugin({
 			name: 'vendor',
 			children: true,
 			minChunk: 2,
-			async: true,
+			async: true
 		}),
 	];
 }
