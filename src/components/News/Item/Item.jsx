@@ -1,12 +1,16 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-const NewsItem = ({ title, message }) => (
+const NewsItem = ({ message }) => (
   <div className="news-item">
     <div className="news-item__container">
-      <h2>{ title }</h2>
       <p>{ message }</p>
     </div>
   </div>
 );
+
+NewsItem.propTypes = {
+  message: PropTypes.string.isRequired,
+};
 
 export default NewsItem;

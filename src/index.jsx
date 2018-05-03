@@ -5,9 +5,15 @@ import { Provider } from 'react-redux';
 // import createHistory from 'history/createBrowserHistory';
 import { createStore } from 'redux';
 import reducers from './reducers';
-import App from './container/App';
+import App from './containers/App';
 
-const store = createStore(reducers);
+const store = createStore(
+  reducers,
+  {
+    news: [{ id: 0, message: 'Friday110' }],
+  },
+  window.devToolsExtension && window.devToolsExtension()
+);
 
 ReactDOM.render(
   <Provider store={store}>

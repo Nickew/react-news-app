@@ -1,6 +1,6 @@
 import * as types from '../constants/newsTypes';
 
-const initialState = { // eslint-disable-line
+const initialState = {
   news: [],
   added: false,
   error: null,
@@ -9,10 +9,15 @@ const initialState = { // eslint-disable-line
 function NewsReducer(state = initialState, action) {
   switch (action.type) {
     case types.ADD_NEWS:
-      return {
+      return [
         ...state,
-        news: [...state.news, action.payload],
-      };
+        { id: action.id, message: action.message },
+      ];
+    case 'UPDATE':
+      return [
+        ...state,
+        { message: action.message },
+      ];
     default:
       return state;
   }
