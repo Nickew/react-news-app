@@ -10,7 +10,7 @@ import App from './containers/App';
 const store = createStore(
   reducers,
   {
-    news: [{ id: 0, message: 'Friday110' }],
+    news: [{ payload: { id: 0, title: 'Redux GO', message: 'Friday110' } }, { payload: { id: 1, title: 'Redux GO', message: 'Friday1648' } }],
   },
   window.devToolsExtension && window.devToolsExtension()
 );

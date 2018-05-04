@@ -28,7 +28,7 @@ module.exports = require('./webpack.base.babel') ({
 
 	plugins: dependencyHandlers().concat(plugins),
 
-	devtool: 'eval-source-map',
+	devtool: 'cheap-module-source-map', //eval-source-map
 
 	performance: {
 		hints: false,
