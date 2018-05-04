@@ -50,9 +50,9 @@ const mapStateToProps = (state) => ({
   news: state.news,
 });
 
-const mapActionsToProps = (dispatch) => ({
-  onAddNews: (title, message) => dispatch(addNews(title, message)),
+const mapActionsToProps = {
+  onAddNews: addNews,
   onRemoveNews: removeNews,
-});
+};
 
 export default connect(mapStateToProps, mapActionsToProps)(App);

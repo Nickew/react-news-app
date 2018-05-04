@@ -1,6 +1,6 @@
 import * as types from '../constants/newsTypes';
 
-const uid = () => Math.random().toString(34).slice(2);
+const uid = Date.now();
 
 export function addNews(title, message) {
   return {
