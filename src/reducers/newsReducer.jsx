@@ -7,11 +7,15 @@ const initialState = {
 function NewsReducer(state = initialState, action) {
   switch (action.type) {
     case types.ADD_NEWS:
-      return {
+      return [
         ...state,
-        news: [...state.news, { id: action.payload.id, title: action.payload.title, message: action.payload.message }],
-        // { id: action.id, message: action.message },
-      };
+        { [action.payload.id]: action.payload },
+      ];
+      // return {
+      //   ...state,
+      //   news: [...state.news, action.payload],
+      // };
+      // { id: action.id, message: action.message },
     case types.REMOVE_NEWS:
       return [
         // ...state,
