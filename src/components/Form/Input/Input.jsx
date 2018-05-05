@@ -1,9 +1,10 @@
 import React from 'react';
 
-const Input = ({ id, label }) => (
+const Input = () => (
   <div className="form__row">
-    <label htmlFor={id} className="form__label">{label}</label>
-    <input id={id} type="input" className="form__input" />
+    <label htmlFor={this.props.inputID} className="form__label">{this.props.labelText}
+      <input id={this.props.inputID} type="input" className="form__input" />
+    </label>
   </div>
 );
 

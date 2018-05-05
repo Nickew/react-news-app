@@ -1,7 +1,7 @@
 import React from 'react';
 
-const Button = ({ onClick, message }) => (
-  <button onClick={onClick} type="button" className="form__button">{ message }</button>
+const Button = () => (
+  <button onClick={this.props.onClick} type="button" className="form__button">{this.props.buttonText}</button>
 );
 
 export default Button;

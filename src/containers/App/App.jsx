@@ -24,23 +24,23 @@ class App extends React.Component { // eslint-disable-line react/prefer-stateles
     this.setState({ message: e.target.value });
   }
 
-  onAddNews() {
-    this.props.onAddNews(this.state.title, this.state.message);
+  addNewsItem() {
+    this.props.addNewsItem(this.state.title, this.state.message);
   }
 
-  onRemoveNews(e, index) {
+  deleteNewsItem(e, index) {
     e.preventDefault();
-    this.props.onRemoveNews(index);
+    this.props.deleteNewsItem(index);
   }
 
   render() {
     const { news } = this.props;
-    const mappedNews = news.map((entity) => <Item title={entity.title} message={entity.message} key={entity.id} onClick={(e) => this.onRemoveNews(e, entity.id)} />);
+    const mappedNews = news.map((entity) => <Item title={entity.title} message={entity.message} key={entity.id} onClick={(e) => this.deleteNewsItem(e, entity.id)} />);
     return (
       <div>
         <input type="text" value={this.state.title} onChange={this.onUpdateNewsTitle} />
         <input type="text" value={this.state.message} onChange={this.onUpdateNewsMessage} />
-        <button onClick={this.onAddNews}>Add entity</button>
+        <button onClick={this.addNewsItem}>Add entity</button>
         <h3>News:</h3>
         <ul>{mappedNews}</ul>
 
@@ -54,14 +54,14 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
-  onAddNews: addNews,
-  onRemoveNews: removeNews,
+  addNewsItem: addNews,
+  deleteNewsItem: removeNews,
 };
 
 App.propTypes = {
   news: PropTypes.array.isRequired,
-  onAddNews: PropTypes.func.isRequired,
-  onRemoveNews: PropTypes.func.isRequired,
+  addNewsItem: PropTypes.func.isRequired,
+  deleteNewsItem: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
