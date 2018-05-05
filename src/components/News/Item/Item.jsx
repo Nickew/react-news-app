@@ -1,16 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const NewsItem = ({ message }) => (
-  <div className="news-item">
-    <div className="news-item__container">
-      <p>{ message }</p>
-    </div>
-  </div>
-);
+class Item extends React.Component { // eslint-disable-line react/prefer-stateless-function
+  render() {
+    return (
+      <li>
+        {this.props.title}
+        <p>{this.props.message}</p>
+        <button onClick={this.props.onClick}>Delete</button>
+      </li>
+    );
+  }
+}
 
-NewsItem.propTypes = {
+Item.propTypes = {
+  title: PropTypes.string.isRequired,
   message: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired,
 };
 
-export default NewsItem;
+export default Item;
