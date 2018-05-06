@@ -63,6 +63,12 @@
       }
     },
     "rules": {
+      "jsx-a11y/anchor-is-valid": [
+        "error", {
+          "components": [ "Link" ],
+          "specialLink": [ "to" ]
+        }
+      ],
       "experimentalDecorators": true,
       "linebreak-style": [
         "error",
@@ -132,13 +138,15 @@
     "express": "^4.16.3",
     "history": "^4.7.2",
     "minimist": "^1.2.0",
+    "normalize.css": "^8.0.0",
     "prop-types": "^15.6.1",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
+    "react-helmet": "^5.2.0",
     "react-hot-loader": "^4.1.2",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.2.2",
-    "react-router-redux": "^4.0.8",
+    "react-router-redux": "^5.0.0-alpha.9",
     "redux": "^4.0.0"
   },
   "devDependencies": {

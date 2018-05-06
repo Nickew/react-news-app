@@ -1,67 +1,34 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { addNews } from '../../actions/addNews';
-import { removeNews } from '../../actions/removeNews';
-import Item from '../../components/News/Item';
+import { Switch, Route, Link } from 'react-router-dom';
+import Helmet from 'react-helmet';
+import HomePage from '../HomePage';
+import NewsPage from '../NewsPage';
+import AboutPage from '../AboutPage';
+import Header from '../../components/Header';
+import NavMenu from '../../components/Header/NavMenu';
 
-class App extends React.Component { // eslint-disable-line react/prefer-stateless-function
-  constructor(props) {
-    super(props);
+import './styles.scss';
 
-    this.state = { title: '', message: '' };
-    this.onAddNews = this.onAddNews.bind(this);
-    this.onUpdateNewsTitle = this.onUpdateNewsTitle.bind(this);
-    this.onRemoveNews = this.onRemoveNews.bind(this);
-    this.onUpdateNewsMessage = this.onUpdateNewsMessage.bind(this);
-  }
-
-  onUpdateNewsTitle(e) {
-    this.setState({ title: e.target.value });
-  }
-
-  onUpdateNewsMessage(e) {
-    this.setState({ message: e.target.value });
-  }
-
-  addNewsItem() {
-    this.props.addNewsItem(this.state.title, this.state.message);
-  }
-
-  deleteNewsItem(e, index) {
-    e.preventDefault();
-    this.props.deleteNewsItem(index);
-  }
-
-  render() {
-    const { news } = this.props;
-    const mappedNews = news.map((entity) => <Item title={entity.title} message={entity.message} key={entity.id} onClick={(e) => this.deleteNewsItem(e, entity.id)} />);
-    return (
-      <div>
-        <input type="text" value={this.state.title} onChange={this.onUpdateNewsTitle} />
-        <input type="text" value={this.state.message} onChange={this.onUpdateNewsMessage} />
-        <button onClick={this.addNewsItem}>Add entity</button>
-        <h3>News:</h3>
-        <ul>{mappedNews}</ul>
-
-      </div>
-    );
-  }
+export default function App() {
+  return (
+    <div className="app-wrapper" >
+      <Helmet
+        defaultTitle="React.js - Boilerplate"
+      >
+        <meta name="description" content="A React.js Boilerplate application" />
+      </Helmet>
+      <Header>
+        <NavMenu>
+          <Link to="/">Home</Link>
+          <Link to="/news">News</Link>
+          <Link to="/about">About</Link>
+        </NavMenu>
+      </Header>
+      <Switch>
+        <Route exact path="/" component={HomePage} />
+        <Route exact path="/news" component={NewsPage} />
+        <Route exact path="/about" component={AboutPage} />
+      </Switch>
+    </div>
+  );
 }
-
-const mapStateToProps = (state) => ({
-  news: state.news,
-});
-
-const mapDispatchToProps = {
-  addNewsItem: addNews,
-  deleteNewsItem: removeNews,
-};
-
-App.propTypes = {
-  news: PropTypes.array.isRequired,
-  addNewsItem: PropTypes.func.isRequired,
-  deleteNewsItem: PropTypes.func.isRequired,
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
