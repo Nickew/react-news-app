@@ -6,15 +6,14 @@ import NewsPage from '../NewsPage';
 import AboutPage from '../AboutPage';
 import Header from '../../components/Header';
 import NavMenu from '../../components/Header/NavMenu';
+import Main from '../../components/Main';
 
 import './styles.scss';
 
 export default function App() {
   return (
     <div className="app-wrapper" >
-      <Helmet
-        defaultTitle="React.js - Boilerplate"
-      >
+      <Helmet defaultTitle="React.js - Boilerplate">
         <meta name="description" content="A React.js Boilerplate application" />
       </Helmet>
       <Header>
@@ -24,11 +23,13 @@ export default function App() {
           <Link to="/about">About</Link>
         </NavMenu>
       </Header>
-      <Switch>
-        <Route exact path="/" component={HomePage} />
-        <Route exact path="/news" component={NewsPage} />
-        <Route exact path="/about" component={AboutPage} />
-      </Switch>
+      <Main>
+        <Switch>
+          <Route exact path="/" component={HomePage} />
+          <Route exact path="/news" component={NewsPage} />
+          <Route exact path="/about" component={AboutPage} />
+        </Switch>
+      </Main>
     </div>
   );
 }

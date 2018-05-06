@@ -4,6 +4,9 @@ import { connect } from 'react-redux';
 import { addNews } from '../../actions/addNews';
 import { removeNews } from '../../actions/removeNews';
 import Item from '../../components/News/Item';
+import Form from '../../components/Form';
+import Input from '../../components/Form/Input';
+import Button from '../../components/Form/Button';
 
 class NewsPage extends React.PureComponent {
   constructor(props) {
@@ -39,12 +42,25 @@ class NewsPage extends React.PureComponent {
       <Item title={entity.title} message={entity.message} key={entity.id} onClick={(e) => this.deleteNewsItem(e, entity.id)} buttonText="Delete" />);
     return (
       <div>
-        <input type="text" value={this.state.title} onChange={this.onUpdateNewsTitle} />
-        <input type="text" value={this.state.message} onChange={this.onUpdateNewsMessage} />
-        <button onClick={this.addNewsItem}>Add entity</button>
+        <Form>
+          <Input
+            inputID="news-title-input"
+            value={this.state.title}
+            onChange={this.onUpdateNewsTitle}
+            placeholder="title..."
+            labelText="Title:"
+          />
+          <Input
+            inputID="news-desc-input"
+            value={this.state.message}
+            onChange={this.onUpdateNewsMessage}
+            placeholder="text..."
+            labelText="Description:"
+          />
+          <Button onClick={this.addNewsItem} buttonText="Add news" />
+        </Form>
         <h3>News:</h3>
         <ul>{mappedNews}</ul>
-
       </div>
     );
   }

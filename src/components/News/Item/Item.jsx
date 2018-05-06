@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Button from '../../Form/Button';
 
+import './styles.scss';
+
 const Item = (props) => (
   <li>
     {props.title}

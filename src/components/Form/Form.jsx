@@ -1,11 +1,18 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-const Form = ({ children }) => (
-  <form className="form">
-    <div className="form__container">
-      { children }
-    </div>
-  </form>
+import './styles.scss';
+
+const Form = (props) => (
+  <div className="form">
+    <form className="form__container">
+      { props.children }
+    </form>
+  </div>
 );
+
+Form.propTypes = {
+  children: PropTypes.any,
+};
 
 export default Form;
