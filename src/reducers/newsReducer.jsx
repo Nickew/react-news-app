@@ -1,6 +1,10 @@
 import * as types from '../constants/newsTypes';
 
-const initialState = [];
+const initialState = [{ id: 0, title: 'Test news #1', message: 'Some description...' },
+  { id: 1, title: 'Test news #2', message: 'Some description...' },
+  { id: 2, title: 'Test news #3', message: 'Some description...' },
+  { id: 3, title: 'Test news #4', message: 'Some description...' },
+  { id: 4, title: 'Test news #5', message: 'Some description...' }];
 
 function NewsReducer(state = initialState, action) {
   switch (action.type) {
