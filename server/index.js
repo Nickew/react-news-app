@@ -13,8 +13,8 @@ const app = express();
 // app.use('/api', myApi);
 
 setup(app, {
-	outputPath: resolve(process.cwd(), 'build'),
-	publicPath: '/',
+  outputPath: resolve(process.cwd(), 'build'),
+  publicPath: '/',
 });
 
 const customHost = argv.host || process.env.HOST;
@@ -22,19 +22,19 @@ const host = customHost || null;
 const prettyHost = customHost || 'localhost';
 
 app.listen(port, host, (err) => {
-	if (err) {
-		return console.log(err.message);
-	}
+  if (err) {
+    return console.log(err.message);
+  }
 
-	if (ngrok) {
-		ngrok.connect(port, (innerErr, url) => {
-			if (innerErr) {
-				console.log(innerErr);
-			}
+  if (ngrok) {
+    ngrok.connect(port, (innerErr, url) => {
+      if (innerErr) {
+        console.log(innerErr);
+      }
 
-			console.log(port, prettyHost, url);
-		});
-	} else {
-		console.log(port, prettyHost);
-	}
+      console.log(port, prettyHost, url);
+    });
+  } else {
+    console.log(port, prettyHost);
+  }
 });

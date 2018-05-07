@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addNews } from '../../actions/addNews';
 import { removeNews } from '../../actions/removeNews';
+import News from '../../components/News';
 import Item from '../../components/News/Item';
 import Form from '../../components/Form';
 import Input from '../../components/Form/Input';
@@ -39,7 +40,7 @@ class NewsPage extends React.PureComponent {
   render() {
     const { news } = this.props;
     const mappedNews = news.map((entity) =>
-      <Item title={entity.title} message={entity.message} key={entity.id} onClick={(e) => this.deleteNewsItem(e, entity.id)} buttonText="Delete" />);
+      <Item id={entity.id} title={entity.title} message={entity.message} key={entity.id} onClick={(e) => this.deleteNewsItem(e, entity.id)} buttonText="Delete" />);
     return (
       <div>
         <Form>
@@ -60,7 +61,7 @@ class NewsPage extends React.PureComponent {
           <Button onClick={this.addNewsItem} buttonText="Add news" />
         </Form>
         <h3>News:</h3>
-        <ul>{mappedNews}</ul>
+        <News>{mappedNews}</News>
       </div>
     );
   }

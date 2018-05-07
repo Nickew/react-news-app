@@ -6,6 +6,7 @@ const HomePage = () => (
     <Helmet>
       <title>Main page - React.js Boilerplate</title>
     </Helmet>
+    <h2>Home</h2>
   </div>
 );
 

@@ -1,0 +1,19 @@
+.news-entity {
+  flex-basis: 47%;
+  border-bottom: 1px dashed lightgrey;
+  &__header {
+    display: flex;
+    align-items: center;
+  }
+  &__title {
+    line-height: 2;
+    margin: 0;
+  }
+  &__message {
+
+  }
+  &__del-btn {
+    display: block;
+    margin-left: auto;
+  }
+}

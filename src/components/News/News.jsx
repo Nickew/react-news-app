@@ -1,21 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import NewsItem from './Item';
 
-const NewsList = ({ news }) => (
+import './styles.scss';
+
+const NewsList = (props) => (
   <div className="news-section">
     <div className="news-section__container">
-      {news.map((entity) =>
-        <NewsItem key={entity.id} {...entity} />)}
+      {props.children}
     </div>
   </div>
 );
 
 NewsList.propTypes = {
-  news: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    message: PropTypes.string.isRequired,
-  }).isRequired).isRequired,
+  children: PropTypes.any,
 };
 
 export default NewsList;

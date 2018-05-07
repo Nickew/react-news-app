@@ -4,9 +4,12 @@ import Helmet from 'react-helmet';
 class AboutPage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {
     return (
-      <Helmet>
-        <title>About Page - React.js Boilerplate</title>
-      </Helmet>
+      <div>
+        <Helmet>
+          <title>About Page - React.js Boilerplate</title>
+        </Helmet>
+        <h2>About</h2>
+      </div>
     );
   }
 }
