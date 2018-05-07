@@ -4,6 +4,7 @@ import Helmet from 'react-helmet';
 import HomePage from '../HomePage';
 import NewsPage from '../NewsPage';
 import AboutPage from '../AboutPage';
+import EntryPage from '../NewsPage/EntryPage';
 import Header from '../../components/Header';
 import NavMenu from '../../components/Header/NavMenu';
 import Main from '../../components/Main';
@@ -26,8 +27,9 @@ export default function App() {
       <Main>
         <Switch>
           <Route exact path="/" component={HomePage} />
-          <Route exact path="/news" component={NewsPage} />
-          <Route exact path="/about" component={AboutPage} />
+          <Route exact path="/news/" component={NewsPage} />
+          <Route path="/news/:id" component={EntryPage} />
+          <Route path="/about" component={AboutPage} />
         </Switch>
       </Main>
     </div>

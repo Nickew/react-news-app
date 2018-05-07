@@ -16,6 +16,9 @@ function NewsReducer(state = initialState, action) {
     case types.REMOVE_NEWS: // eslint-disable-line no-case-declarations
       const newsID = action.id;
       return [...state.filter((ent) => ent.id !== newsID)];
+    case types.LOAD_NEWS_ENTRY: // eslint-disable-line no-case-declarations
+      const findID = action.id;
+      return [...state.filter((ent) => ent.id === findID)];
     default:
       return state;
   }
