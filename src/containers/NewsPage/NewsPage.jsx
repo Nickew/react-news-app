@@ -67,7 +67,7 @@ class NewsPage extends React.PureComponent {
   }
 }
 
-const mapStateToProps = (state, ownProps) => ({
+const mapStateToProps = (state) => ({
   news: state.news,
 });
 
