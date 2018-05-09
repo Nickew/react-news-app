@@ -8,7 +8,8 @@ const Item = (props) => (
   <div id={'nid' + props.id} className="news-entity"> {/* eslint-disable-line */}
     <div className="news-entity__header">
       <h3 className="news-entity__title"><Link to={`/news/${props.id}`}>{props.title}</Link></h3>
-      <Button className="news-entity__del-btn" onClick={props.onClick} buttonText={props.buttonText} /></div>
+      <Button className="news-entity__del-btn" onClick={props.onClick} buttonText={props.buttonText} />
+    </div>
     <div className="news-entity__message"><p>{props.message}</p></div>
   </div>
 );

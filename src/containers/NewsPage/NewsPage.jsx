@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addNews } from '../../actions/addNews';
 import { removeNews } from '../../actions/removeNews';
+import MainContainer from '../../components/MainContainer';
 import News from '../../components/News';
 import Item from '../../components/News/Item';
-import Form from '../../components/Form';
-import Input from '../../components/Form/Input';
-import Button from '../../components/Form/Button';
+import Aside from '../../components/Aside';
+import Block from '../../components/Aside/Block';
 
 class NewsPage extends React.PureComponent {
   constructor(props) {
@@ -42,27 +42,14 @@ class NewsPage extends React.PureComponent {
     const mappedNews = news.map((entity) =>
       <Item id={entity.id} title={entity.title} message={entity.message} key={entity.id} onClick={(e) => this.deleteNewsItem(e, entity.id)} buttonText="Delete" />);
     return (
-      <div>
-        <Form>
-          <Input
-            inputID="news-title-input"
-            value={this.state.title}
-            onChange={this.onUpdateNewsTitle}
-            placeholder="title..."
-            labelText="Title:"
-          />
-          <Input
-            inputID="news-desc-input"
-            value={this.state.message}
-            onChange={this.onUpdateNewsMessage}
-            placeholder="text..."
-            labelText="Description:"
-          />
-          <Button onClick={this.addNewsItem} buttonText="Add news" />
-        </Form>
-        <h3>News:</h3>
+      <MainContainer>
         <News>{mappedNews}</News>
-      </div>
+        <Aside>
+          <Block title="Categories">
+            Cats...
+          </Block>
+        </Aside>
+      </MainContainer>
     );
   }
 }

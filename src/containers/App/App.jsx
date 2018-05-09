@@ -5,6 +5,7 @@ import HomePage from '../HomePage';
 import NewsPage from '../NewsPage';
 import AboutPage from '../AboutPage';
 import EntryPage from '../NewsPage/EntryPage';
+import AddEntryPage from '../NewsPage/AddEntryPage';
 import Header from '../../components/Header';
 import NavMenu from '../../components/Header/NavMenu';
 import Main from '../../components/Main';
@@ -22,12 +23,16 @@ export default function App() {
           <Link to="/">Home</Link>
           <Link to="/news">News</Link>
           <Link to="/about">About</Link>
+          {location.pathname === '/news' ? /* eslint-disable-line no-restricted-globals */
+            <Link to="/news/add-entry">Add news</Link> :
+            null}
         </NavMenu>
       </Header>
       <Main>
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route exact path="/news/" component={NewsPage} />
+          <Route exact path="/news/add-entry" component={AddEntryPage} />
           <Route path="/news/:id" component={EntryPage} />
           <Route path="/about" component={AboutPage} />
         </Switch>
