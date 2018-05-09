@@ -1,11 +1,11 @@
 import * as types from '../constants/newsCatTypes';
 
 const initialState = [
-  { id: 0, name: 'Test category #1' },
-  { id: 1, name: 'Test category #2' },
+  { id: 0, url: 'test1', name: 'Test category #1' },
+  { id: 1, url: 'test2', name: 'Test category #2' },
 ];
 
-function newsCatReducer(state = initialState, action) {
+function NewsCatReducer(state = initialState, action) {
   switch (action.type) {
     case types.ADD_CATEGORY:
       return [
@@ -17,4 +17,4 @@ function newsCatReducer(state = initialState, action) {
   }
 }
 
-export default newsCatReducer;
+export default NewsCatReducer;

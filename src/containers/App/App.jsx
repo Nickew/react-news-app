@@ -33,6 +33,7 @@ export default function App() {
           <Route exact path="/" component={HomePage} />
           <Route exact path="/news/" component={NewsPage} />
           <Route exact path="/news/add-entry" component={AddEntryPage} />
+          <Route path="/news/category/:id" component={NewsPage} />
           <Route path="/news/:id" component={EntryPage} />
           <Route path="/about" component={AboutPage} />
         </Switch>
