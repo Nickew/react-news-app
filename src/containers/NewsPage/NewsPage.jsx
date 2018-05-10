@@ -48,7 +48,7 @@ class NewsPage extends React.PureComponent {
   render() {
     const { news, newsCategories } = this.props;
     const mappedCats = newsCategories.map((cat) =>
-      <li key={cat.id}><Link to={`/news/category/${cat.url}`} onClick={(e) => this.showCategory(e, cat.id)}>{cat.name}</Link></li>);
+      <li key={cat.id}><Link to={`/news/category/${cat.url}`}>{cat.name}</Link></li>);
     const mappedNews = news.map((entity) =>
       <Item id={entity.id} title={entity.title} message={entity.message} key={entity.id} onClick={(e) => this.deleteNewsItem(e, entity.id)} buttonText="Delete" />);
     return (

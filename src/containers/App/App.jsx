@@ -6,6 +6,7 @@ import NewsPage from '../NewsPage';
 import AboutPage from '../AboutPage';
 import EntryPage from '../NewsPage/EntryPage';
 import AddEntryPage from '../NewsPage/AddEntryPage';
+import CatPage from '../CatPage';
 import Header from '../../components/Header';
 import NavMenu from '../../components/Header/NavMenu';
 import Main from '../../components/Main';
@@ -33,7 +34,7 @@ export default function App() {
           <Route exact path="/" component={HomePage} />
           <Route exact path="/news/" component={NewsPage} />
           <Route exact path="/news/add-entry" component={AddEntryPage} />
-          <Route path="/news/category/:id" component={NewsPage} />
+          <Route path="/news/category/:id" component={CatPage} />
           <Route path="/news/:id" component={EntryPage} />
           <Route path="/about" component={AboutPage} />
         </Switch>

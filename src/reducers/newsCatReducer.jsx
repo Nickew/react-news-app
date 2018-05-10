@@ -10,7 +10,7 @@ function NewsCatReducer(state = initialState, action) {
     case types.ADD_CATEGORY:
       return [
         ...state,
-        { id: action.payload.id, title: action.payload.name },
+        { id: action.payload.id, title: action.payload.name, url: action.payload.url },
       ];
     default:
       return state;
