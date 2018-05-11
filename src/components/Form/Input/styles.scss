@@ -1,15 +1,13 @@
+@import '../../../styles/variables';
+
 .form {
-  &__row {
-    padding-bottom: 10px;
-  }
   &__label {
-    max-width: 400px;
     display: flex;
     flex-direction: column;
     line-height: 1.5;
   }
-  &__input {
-    height: 35px;
+  &__input, &__select {
+    height: $input-height;
     border-radius: 3px;
     border: 1px solid lightgrey;
     padding-left: 5px;

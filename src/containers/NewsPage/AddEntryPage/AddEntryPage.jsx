@@ -5,43 +5,56 @@ import { addNews } from '../../../actions/addNews';
 import Form from '../../../components/Form';
 import Input from '../../../components/Form/Input';
 import Button from '../../../components/Form/Button';
+import Select from '../../../components/Form/Select';
 
 class AddEntryPage extends React.PureComponent {
   constructor(props) {
     super(props);
 
-    this.state = { title: '', message: '' };
+    this.state = { title: '', message: '', category: '' };
     this.addNewsItem = this.addNewsItem.bind(this);
-    this.onUpdateNewsTitle = this.onUpdateNewsTitle.bind(this);
-    this.onUpdateNewsMessage = this.onUpdateNewsMessage.bind(this);
+    this.onChangeNewsTitle = this.onChangeNewsTitle.bind(this);
+    this.onChangeNewsMessage = this.onChangeNewsMessage.bind(this);
   }
 
-  onUpdateNewsTitle(e) {
+  onChangeNewsTitle(e) {
     this.setState({ title: e.target.value });
   }
 
-  onUpdateNewsMessage(e) {
+  onChangeNewsMessage(e) {
     this.setState({ message: e.target.value });
   }
 
+  onChangeNewsCategory(e) {
+    this.setState({ category: e.target.value });
+  }
+
   addNewsItem() {
-    this.props.addNewsItem(this.state.title, this.state.message);
+    this.props.addNewsItem(this.state.title, this.state.message, this.state.category);
   }
 
   render() {
+    const { newsCategories } = this.props;
+    console.log(newsCategories);
     return (
       <Form>
+        <Select
+          labelText="Category:"
+          name="news-category-select"
+          options={newsCategories}
+        >
+        </Select>
         <Input
           inputID="news-title-input"
           value={this.state.title}
-          onChange={this.onUpdateNewsTitle}
+          onChange={this.onChangeNewsTitle}
           placeholder="title..."
           labelText="Title:"
         />
         <Input
           inputID="news-desc-input"
           value={this.state.message}
-          onChange={this.onUpdateNewsMessage}
+          onChange={this.onChangeNewsMessage}
           placeholder="text..."
           labelText="Description:"
         />
@@ -51,12 +64,17 @@ class AddEntryPage extends React.PureComponent {
   }
 }
 
+const mapStateToProps = (state) => ({
+  newsCategories: state.news_categories,
+});
+
 const mapDispatchToProps = {
   addNewsItem: addNews,
 };
 
 AddEntryPage.propTypes = {
   addNewsItem: PropTypes.func.isRequired,
+  newsCategories: PropTypes.array,
 };
 
-export default connect(null, mapDispatchToProps)(AddEntryPage);
+export default connect(mapStateToProps, mapDispatchToProps)(AddEntryPage);

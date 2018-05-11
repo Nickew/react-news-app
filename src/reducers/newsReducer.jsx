@@ -22,7 +22,9 @@ function NewsReducer(state = initialState, action) {
     case types.ADD_NEWS:
       return [
         ...state,
-        { id: action.payload.id, title: action.payload.title, message: action.payload.message },
+        {
+          id: action.payload.id, category: action.payload.category, title: action.payload.title, message: action.payload.message,
+        },
       ];
     case types.REMOVE_NEWS: // eslint-disable-line no-case-declarations
       const newsID = action.id;

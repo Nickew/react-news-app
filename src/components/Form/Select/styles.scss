@@ -1,0 +1,9 @@
+@import '../../../styles/variables';
+
+// Select styles are in Input comp styles ../Input/styles.scss
+
+.select {
+  display: flex;
+  flex-direction: column;
+  padding-top: $input-height / 10;
+}
