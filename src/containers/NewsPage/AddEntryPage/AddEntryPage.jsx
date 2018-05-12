@@ -15,6 +15,7 @@ class AddEntryPage extends React.PureComponent {
     this.addNewsItem = this.addNewsItem.bind(this);
     this.onChangeNewsTitle = this.onChangeNewsTitle.bind(this);
     this.onChangeNewsMessage = this.onChangeNewsMessage.bind(this);
+    this.onChangeNewsCategory = this.onChangeNewsCategory.bind(this);
   }
 
   onChangeNewsTitle(e) {
@@ -27,22 +28,25 @@ class AddEntryPage extends React.PureComponent {
 
   onChangeNewsCategory(e) {
     this.setState({ category: e.target.value });
+    console.log(this.state.category);
   }
 
   addNewsItem() {
-    this.props.addNewsItem(this.state.title, this.state.message, this.state.category);
+    this.props.addNewsItem(this.state.category, this.state.title, this.state.message);
   }
 
   render() {
     const { newsCategories } = this.props;
-    console.log(newsCategories);
     return (
       <Form>
         <Select
           labelText="Category:"
           name="news-category-select"
           options={newsCategories}
+          value={this.state.category}
+          onChange={this.onChangeNewsCategory}
         >
+          {newsCategories.map((item) => <option key={item.id} className="select__option" value={item.url}>{item.name}</option>)}
         </Select>
         <Input
           inputID="news-title-input"

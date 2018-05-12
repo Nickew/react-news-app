@@ -6,16 +6,18 @@ import './styles.scss';
 const Select = (props) => (
   <div className="form__row">
     <label htmlFor={props.name}>{props.labelText}</label>
-    <select id={props.name} name={props.name} className="select form__select">
-      {props.options.map((item) => <option key={item.id} className="select__option" value={item.name}>{item.name}</option>)}
+    <select onChange={props.onChange} value={props.value} id={props.name} name={props.name} className="select form__select">
+      {props.children}
     </select>
   </div>
 );
 
 Select.propTypes = {
   name: PropTypes.string.isRequired,
-  options: PropTypes.array.isRequired,
+  children: PropTypes.any.isRequired,
   labelText: PropTypes.string,
+  value: PropTypes.any,
+  onChange: PropTypes.func,
 };
 
 export default Select;
