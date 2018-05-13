@@ -28,7 +28,6 @@ class AddEntryPage extends React.PureComponent {
 
   onChangeNewsCategory(e) {
     this.setState({ category: e.target.value });
-    console.log(this.state.category);
   }
 
   addNewsItem() {

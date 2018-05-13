@@ -24,9 +24,7 @@ export default function App() {
           <Link to="/">Home</Link>
           <Link to="/news">News</Link>
           <Link to="/about">About</Link>
-          {location.pathname === '/news' ? /* eslint-disable-line no-restricted-globals */
-            <Link to="/news/add-entry">Add news</Link> :
-            null}
+          <Link to="/news/add-entry">Add news</Link>
         </NavMenu>
       </Header>
       <Main>

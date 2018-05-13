@@ -2,19 +2,19 @@ import * as types from '../constants/newsTypes';
 const filteredState = [];
 const initialState = [
   {
-    id: 0, category: 'test1', title: 'Test news #1', message: 'Some description...', hidden: false,
+    id: 0, category: 'test1', title: 'Test news #1', message: 'Some description...', likes: 0,
   },
   {
-    id: 1, category: 'test1', title: 'Test news #2', message: 'Some description...', hidden: false,
+    id: 1, category: 'test1', title: 'Test news #2', message: 'Some description...', likes: 0,
   },
   {
-    id: 2, category: 'test1', title: 'Test news #3', message: 'Some description...', hidden: false,
+    id: 2, category: 'test1', title: 'Test news #3', message: 'Some description...', likes: 0,
   },
   {
-    id: 3, category: 'test2', title: 'Test news #4', message: 'Some description...', hidden: false,
+    id: 3, category: 'test2', title: 'Test news #4', message: 'Some description...', likes: 0,
   },
   {
-    id: 4, category: 'test2', title: 'Test news #5', message: 'Some description...', hidden: false,
+    id: 4, category: 'test2', title: 'Test news #5', message: 'Some description...', likes: 0,
   }];
 
 function NewsReducer(state = initialState, action) {
@@ -23,14 +23,14 @@ function NewsReducer(state = initialState, action) {
       return [
         ...state,
         {
-          id: action.payload.id, category: action.payload.category, title: action.payload.title, message: action.payload.message,
+          id: action.payload.id, category: action.payload.category, title: action.payload.title, message: action.payload.message, likes: 0,
         },
       ];
     case types.REMOVE_NEWS: // eslint-disable-line no-case-declarations
       const newsID = action.id;
       return [...state.filter((ent) => ent.id !== newsID)];
     case types.FILTER_NEWS: // eslint-disable-line no-case-declarations
-      const catID = action.id; // TODO: ForEach if...else statement, instead of filter bcoz it's doesn't work
+      const catID = action.id;
       state.forEach((el, index, arr) => {
         if (arr[index].category === catID) {
           filteredState.push(arr[index]);
@@ -39,6 +39,12 @@ function NewsReducer(state = initialState, action) {
         }
       });
       return filteredState;
+    case types.LIKE_NEWS:
+      state.forEach((el, index, arr) => {
+        if (arr[index].id === action.id) {
+          return arr[index].likes += 1;
+        }
+      });
     default:
       return state;
   }
