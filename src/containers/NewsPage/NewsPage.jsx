@@ -23,9 +23,9 @@ class NewsPage extends React.PureComponent {
     this.props.deleteNewsItem(index);
   }
 
-  likeNewsItem(e, count) {
+  likeNewsItem(e, id) {
     e.preventDefault();
-    this.props.likeNewsItem(count);
+    this.props.likeNewsItem(id);
   }
 
   render() {
@@ -42,7 +42,7 @@ class NewsPage extends React.PureComponent {
         key={entity.id}
         onClick={(e) => this.deleteNewsItem(e, entity.id)}
         buttonText="Delete"
-        likeOnClick={(e) => this.likeNewsItem(e, entity.likes)}
+        likeOnClick={(e) => this.likeNewsItem(e, entity.id)}
         likeButtonText="Like!"
         likes={entity.likes}
       />));
