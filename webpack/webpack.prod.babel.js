@@ -1,12 +1,7 @@
-// import path from 'path';
-// import webpack from 'webpack';
-// import HtmlWebpackPlugin from 'html-webpack-plugin';
-// import OfflinePlugin from 'offline-plugin';
-const path = require('path');
-const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const OfflinePlugin = require('offline-plugin');
-
+import path from 'path';
+import webpack from 'webpack';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import OfflinePlugin from 'offline-plugin';
 
 module.exports = require('./webpack.base.babel')({
   entry: [

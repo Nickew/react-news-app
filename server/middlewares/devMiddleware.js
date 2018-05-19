@@ -1,16 +1,16 @@
-const path = require('path');
-const webpack = require('webpack');
-const webpackDevMiddleware = require('webpack-dev-middleware');
-const webpackHotMiddleware = require('webpack-hot-middleware');
+import path from 'path';
+import webpack from 'webpack';
+import webpackDevMiddleware from 'webpack-dev-middleware';
+import webpackHotMiddleware from 'webpack-hot-middleware';
 
-function createWebpackMiddleware(compiler, publicPath) {
+const createWebpackMiddleware = (compiler, publicPath) => {
   return webpackDevMiddleware(compiler, {
     noInfo: true,
     publicPath,
     silent: true,
     stats: 'errors-only',
   });
-}
+};
 
 module.exports = function addDevMiddlewares(app, webpackConfig) {
   const compiler = webpack(webpackConfig);

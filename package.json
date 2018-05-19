@@ -2,13 +2,14 @@
   "name": "reactjs-boilerplate",
   "version": "1.0.0",
   "description": "ReactJS-boilerplate using Webpack, Express.",
+  "main": "server/index.js",
   "repository": {
     "type": "git",
     "url": "git://github.com/Nickew/reactjs-boilerplate.git"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "cross-env NODE_ENV=development babel-node server"
+    "start": "cross-env NODE_ENV=development nodemon --exec babel-node server/index.js"
   },
   "author": "Nickew",
   "license": "ISC",
@@ -16,33 +17,6 @@
     "*.js": "lint:eslint"
   },
   "pre-commit": "lint:staged",
-  "babel": {
-    "plugins": [
-      "transform-decorators-legacy"
-    ],
-    "presets": [
-      [
-        "env",
-        {
-          "modules": false
-        }
-      ],
-      "react",
-      "stage-0"
-    ],
-    "env": {
-      "production": {
-        "only": [
-          "app"
-        ]
-      },
-      "test": {
-        "plugins": [
-          "dynamic-import-node"
-        ]
-      }
-    }
-  },
   "eslintConfig": {
     "parser": "babel-eslint",
     "extends": "airbnb",
@@ -150,6 +124,7 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "body-parser": "^1.18.3",
     "compression": "^1.7.2",
     "express": "^4.16.3",
     "history": "^4.7.2",
@@ -164,18 +139,19 @@
     "react-router-dom": "^4.2.2",
     "react-router-redux": "^5.0.0-alpha.9",
     "redux": "^4.0.0",
-    "redux-thunk": "^2.2.0"
+    "redux-thunk": "^2.2.0",
+    "validator": "^10.2.0"
   },
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.3",
+    "@babel/cli": "^7.0.0-beta.47",
+    "@babel/core": "^7.0.0-beta.47",
+    "@babel/node": "^7.0.0-beta.47",
+    "@babel/preset-env": "^7.0.0-beta.47",
+    "@babel/preset-react": "^7.0.0-beta.47",
+    "@babel/preset-stage-0": "^7.0.0-beta.47",
     "babel-eslint": "^8.2.3",
-    "babel-loader": "^7.1.4",
+    "babel-loader": "^8.0.0-beta.3",
     "babel-plugin-dynamic-import-node": "^1.2.0",
-    "babel-plugin-transform-decorators-legacy": "^1.3.4",
-    "babel-preset-env": "^1.6.1",
-    "babel-preset-react": "^6.24.1",
-    "babel-preset-stage-0": "^6.24.1",
     "cross-env": "^5.1.4",
     "css-loader": "^0.28.11",
     "eslint": "^4.19.1",
@@ -192,6 +168,7 @@
     "image-webpack-loader": "^4.2.0",
     "ngrok": "^3.0.1",
     "node-sass": "^4.9.0",
+    "nodemon": "^1.17.4",
     "offline-plugin": "^5.0.2",
     "sass-loader": "^7.0.1",
     "style-loader": "^0.21.0",

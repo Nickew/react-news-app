@@ -1,16 +1,21 @@
-const express = require('express');
+/* eslint-disable */
+import express from 'express';
+import bodyParser from 'body-parser';
+import argv from './argv';
+import port from './port';
+import setup from './middlewares/setupMiddleware';
+import users from './routes/users';
 
-const argv = require('./argv');
-const port = require('./port');
-const setup = require('./middlewares/setupMiddleware');
-const isDev = process.env.NODE_ENV !== 'production';
-const ngrok = (isDev && process.env.ENABLE_TUNNEL) || argv.tunnel ? require('ngrok') : false;
 const resolve = require('path').resolve;
+
+const ngrok = (isDev && process.env.ENABLE_TUNNEL) || argv.tunnel ? require('ngrok') : false;
+const isDev = process.env.NODE_ENV !== 'production';
 
 const app = express();
 
-// If you need a backend, e.g. an API, add your custom backend-specific middleware here
-// app.use('/api', myApi);
+app.use(bodyParser.json());
+
+app.use('/api/users', users);
 
 setup(app, {
   outputPath: resolve(process.cwd(), 'build'),
