@@ -7,6 +7,7 @@ import AboutPage from '../AboutPage';
 import EntryPage from '../NewsPage/EntryPage';
 import AddEntryPage from '../NewsPage/AddEntryPage';
 import CatPage from '../CatPage';
+import SignupPage from '../SignupPage';
 import Header from '../../components/Header';
 import NavMenu from '../../components/Header/NavMenu';
 import Main from '../../components/Main';
@@ -25,6 +26,7 @@ export default function App() {
           <Link to="/news">News</Link>
           <Link to="/about">About</Link>
           <Link to="/news/add-entry">Add news</Link>
+          <Link to="/signup">Sign up</Link>
         </NavMenu>
       </Header>
       <Main>
@@ -35,6 +37,7 @@ export default function App() {
           <Route path="/news/category/:id" component={CatPage} />
           <Route path="/news/:id" component={EntryPage} />
           <Route path="/about" component={AboutPage} />
+          <Route path="/signup" component={SignupPage} />
         </Switch>
       </Main>
     </div>

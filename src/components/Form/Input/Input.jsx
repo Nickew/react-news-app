@@ -10,6 +10,7 @@ const Input = (props) => (
         value={props.value}
         onChange={props.onChange}
         id={props.inputID}
+        name={props.name}
         type={props.inputType ? props.inputType : "input"} // eslint-disable-line
         className="form__input"
         placeholder={props.placeholder}
@@ -25,6 +26,7 @@ Input.propTypes = {
   placeholder: PropTypes.string,
   value: PropTypes.string.isRequired,
   onChange: PropTypes.func,
+  name: PropTypes.string,
 };
 
 export default Input;

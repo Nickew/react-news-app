@@ -5,7 +5,7 @@ import './styles.scss';
 
 const Form = (props) => (
   <div className="form">
-    <form className="form__container">
+    <form className="form__container" onSubmit={props.onSubmit}>
       { props.children }
     </form>
   </div>
@@ -13,6 +13,7 @@ const Form = (props) => (
 
 Form.propTypes = {
   children: PropTypes.any,
+  onSubmit: PropTypes.func,
 };
 
 export default Form;
