@@ -1,0 +1,27 @@
+.form { 
+  &__button {
+    border: 0;
+    color: #fff;
+    padding: 10px 30px;
+    border-radius: 3px;
+    cursor: pointer;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.button {
+  &--default {
+    background: rgb(182, 184, 187);
+  }
+  &--cancel {
+    background: rgb(216, 92, 92);
+  }
+  &--accept {
+    background: rgb(115, 207, 87);
+  }
+  &--accept-b {
+    background: rgb(33, 142, 231);
+  }
+}

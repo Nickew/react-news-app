@@ -1,11 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import './styles.scss';
+
 const Button = (props) => (
   <button
     onClick={props.onClick}
     type={props.type === undefined ? 'button' : props.type}
-    className={props.className}
+    className={`form__button ${props.className !== undefined ? props.className : 'button--default'}`}
   >
     {props.buttonText === undefined ? 'OK' : props.buttonText}
   </button>

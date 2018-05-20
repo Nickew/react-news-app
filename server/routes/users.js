@@ -40,7 +40,7 @@ router.post('/', (req, res) => {
   const { errors, isValid } = validateInput(req.body);
 
   if (!isValid) {
-    res.status(404).json(errors);
+    res.status(400).json(errors);
   }
 });
 

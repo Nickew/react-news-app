@@ -15,6 +15,7 @@ const Input = (props) => (
         className="form__input"
         placeholder={props.placeholder}
       />
+      {props.children}
     </label>
   </div>
 );
@@ -27,6 +28,7 @@ Input.propTypes = {
   value: PropTypes.string.isRequired,
   onChange: PropTypes.func,
   name: PropTypes.string,
+  children: PropTypes.any,
 };
 
 export default Input;
