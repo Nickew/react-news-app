@@ -11,6 +11,7 @@ import SignupPage from '../SignupPage';
 import Header from '../../components/Header';
 import NavMenu from '../../components/Header/NavMenu';
 import Main from '../../components/Main';
+import FlashMessagesList from '../FlashMessagesList';
 
 import './styles.scss';
 
@@ -29,6 +30,7 @@ export default function App() {
           <Link to="/signup">Sign up</Link>
         </NavMenu>
       </Header>
+      <FlashMessagesList />
       <Main>
         <Switch>
           <Route exact path="/" component={HomePage} />
