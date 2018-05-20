@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'react-router-redux';
-import createHistory from 'history/createBrowserHistory';
+import history from './utils/history';
 import App from './containers/App';
 
 // Import store configuration
@@ -12,7 +12,6 @@ import configureStore from './configureStore';
 import 'normalize.css'; // eslint-disable-line
 
 const initialState = {};
-const history = createHistory();
 const store = configureStore(initialState, history);
 const MOUNT_NODE = document.getElementById('app');
 

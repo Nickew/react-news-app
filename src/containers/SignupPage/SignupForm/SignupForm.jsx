@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import history from '../../../utils/history';
+import validateInput from '../../../../server/shared/validations/signup';
 import Form from '../../../components/Form';
 import Input from '../../../components/Form/Input';
 import Button from '../../../components/Form/Button';
@@ -26,11 +28,27 @@ class SignupForm extends React.Component {
 
   onSubmit(e) {
     e.preventDefault();
-    this.setState({ errors: {} });
-    this.props.userSignupRequest(this.state).then(
-      () => {},
-      ({ response }) => this.setState({ errors: response.data })
-    );
+
+    if (this.isValid()) {
+      this.setState({ errors: {} });
+      this.props.userSignupRequest(this.state).then(
+        () => {
+          history.push('/');
+          // window.location.reload();
+        },
+        ({ response }) => this.setState({ errors: response.data })
+      );
+    }
+  }
+
+  isValid() {
+    const { errors, isValid } = validateInput(this.state);
+
+    if (!isValid) {
+      this.setState({ errors });
+    }
+
+    return isValid;
   }
 
   render() {
