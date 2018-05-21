@@ -1,0 +1,28 @@
+.alertbox {
+  margin-top: 10px;
+}
+
+.alert {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0 15px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    &--success {
+      background: rgb(169, 255, 173);
+    }
+    &--fail {
+      background: rgb(255, 171, 171);
+    }
+    &__btn {
+      margin-left: auto;
+      margin-bottom: 5px;
+      &--simple {
+        border: none;
+        background: none;
+        font-size: 2rem;
+        cursor: pointer;
+      }
+    }
+}

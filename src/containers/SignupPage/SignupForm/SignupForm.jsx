@@ -41,6 +41,11 @@ class SignupForm extends React.Component {
         },
         ({ response }) => this.setState({ errors: response.data })
       );
+    } else {
+      this.props.addFlashMessage({
+        type: 'fail',
+        text: 'ERROR',
+      });
     }
   }
 

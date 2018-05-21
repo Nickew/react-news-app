@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Button from '../Form/Button';
+
+import './styles.scss';
 
 class FlashMessage extends React.Component {
   constructor(props) {
@@ -14,13 +15,13 @@ class FlashMessage extends React.Component {
   }
 
   render() {
-    const { id, type, text } = this.props.message;
+    const { type, text } = this.props.message;
     return (
       <div
-        className={`alert ${type === 'success' && 'alert--success' || type === 'danger' && 'alert--danger'}`}
+        className={`alert ${type === 'success' && 'alert--success' || type === 'fail' && 'alert--fail'}`} // eslint-disable-line no-mixed-operators
       >
         {text}
-        <Button onClick={this.onClick} className="button--danger" buttonText="&times;" />
+        <button onClick={this.onClick} className="alert__btn alert__btn--simple">&times;</button>
       </div>
     );
   }

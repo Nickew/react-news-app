@@ -9,7 +9,7 @@ class FlashMessagesList extends React.PureComponent {
     const messages = this.props.messages.map((message) =>
       <FlashMessage key={message.id} message={message} deleteFlashMessage={this.props.deleteFlashMessage} />);
     return (
-      <div>{ messages }</div>
+      <div className="alertbox">{ messages }</div>
     );
   }
 }
