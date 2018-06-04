@@ -2,53 +2,21 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { deleteNewsEntry, likeNewsEntry } from '../../actions/newsActions';
+import NewsList from '../NewsList';
 import MainContainer from '../../components/MainContainer';
-import News from '../../components/News';
-import Item from '../../components/News/Item';
 import Aside from '../../components/Aside';
 import Block from '../../components/Aside/Block';
 
 class NewsPage extends React.PureComponent {
-  constructor(props) {
-    super(props);
-
-    this.deleteNewsEntry = this.deleteNewsEntry.bind(this);
-    this.likeNewsEntry = this.likeNewsEntry.bind(this);
-  }
-
-  deleteNewsEntry(e, index) {
-    e.preventDefault();
-    this.props.deleteNewsEntry(index);
-  }
-
-  likeNewsEntry(e, id) {
-    e.preventDefault();
-    this.props.likeNewsEntry(id);
-  }
-
   render() {
-    const { news, newsCategories } = this.props;
+    const { newsCategories } = this.props;
 
     const mappedCats = newsCategories.map((cat) =>
       <li key={cat.id}><Link to={`/news/category/${cat.url}`}>{cat.name}</Link></li>);
 
-    const mappedNews = news.map((entity) =>
-      (<Item
-        id={entity.id}
-        title={entity.title}
-        message={entity.message}
-        key={entity.id}
-        onClick={(e) => this.deleteNewsEntry(e, entity.id)}
-        buttonText="Delete"
-        likeOnClick={(e) => this.likeNewsEntry(e, entity.id)}
-        likeButtonText="Like!"
-        likes={entity.likes}
-      />));
-
     return (
       <MainContainer>
-        <News>{mappedNews}</News>
+        <NewsList />
         <Aside>
           <Block title="Categories">
             <ul>{mappedCats}</ul>
@@ -60,20 +28,11 @@ class NewsPage extends React.PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-  news: state.news,
   newsCategories: state.news_categories,
 });
 
-const mapDispatchToProps = {
-  deleteNewsEntry,
-  likeNewsEntry,
-};
-
 NewsPage.propTypes = {
-  news: PropTypes.array.isRequired,
   newsCategories: PropTypes.array.isRequired,
-  deleteNewsEntry: PropTypes.func.isRequired,
-  likeNewsEntry: PropTypes.func,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(NewsPage);
+export default connect(mapStateToProps, null)(NewsPage);
