@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { addNews } from '../../../actions/addNews';
+import { addNewsEntry } from '../../../actions/newsActions';
 import Form from '../../../components/Form';
 import Input from '../../../components/Form/Input';
 import Button from '../../../components/Form/Button';
@@ -12,7 +12,7 @@ class AddEntryPage extends React.PureComponent {
     super(props);
 
     this.state = { title: '', message: '', category: '' };
-    this.addNewsItem = this.addNewsItem.bind(this);
+    this.addNewsEntry = this.addNewsEntry.bind(this);
     this.onChangeNewsTitle = this.onChangeNewsTitle.bind(this);
     this.onChangeNewsMessage = this.onChangeNewsMessage.bind(this);
     this.onChangeNewsCategory = this.onChangeNewsCategory.bind(this);
@@ -30,8 +30,8 @@ class AddEntryPage extends React.PureComponent {
     this.setState({ category: e.target.value });
   }
 
-  addNewsItem() {
-    this.props.addNewsItem(this.state.category, this.state.title, this.state.message);
+  addNewsEntry() {
+    this.props.addNewsEntry(this.state.category, this.state.title, this.state.message);
   }
 
   render() {
@@ -61,7 +61,7 @@ class AddEntryPage extends React.PureComponent {
           placeholder="text..."
           labelText="Description:"
         />
-        <Button onClick={this.addNewsItem} buttonText="Add news" />
+        <Button onClick={this.addNewsEntry} buttonText="Add news" />
       </Form>
     );
   }
@@ -72,11 +72,11 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
-  addNewsItem: addNews,
+  addNewsEntry,
 };
 
 AddEntryPage.propTypes = {
-  addNewsItem: PropTypes.func.isRequired,
+  addNewsEntry: PropTypes.func.isRequired,
   newsCategories: PropTypes.array,
 };
 

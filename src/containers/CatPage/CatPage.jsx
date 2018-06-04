@@ -3,7 +3,7 @@ import Helmet from 'react-helmet';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { removeNews } from '../../actions/removeNews';
+import { deleteNewsEntry } from '../../actions/newsActions';
 import MainContainer from '../../components/MainContainer';
 import News from '../../components/News';
 import Item from '../../components/News/Item';
@@ -14,12 +14,12 @@ class CatPage extends React.PureComponent {
   constructor(props) {
     super(props);
 
-    this.deleteNewsItem = this.deleteNewsItem.bind(this);
+    this.deleteNewsEntry = this.deleteNewsEntry.bind(this);
   }
 
-  deleteNewsItem(e, index) {
+  deleteNewsEntry(e, index) {
     e.preventDefault();
-    this.props.deleteNewsItem(index);
+    this.props.deleteNewsEntry(index);
   }
 
   render() {
@@ -39,7 +39,7 @@ class CatPage extends React.PureComponent {
 
     const mappedNews = news.map((entity) => { // eslint-disable-line
       if (entity.category === categoryId) {
-        return <Item id={entity.id} title={entity.title} message={entity.message} key={entity.id} onClick={(e) => this.deleteNewsItem(e, entity.id)} buttonText="Delete" />;
+        return <Item id={entity.id} title={entity.title} message={entity.message} key={entity.id} onClick={(e) => this.deleteNewsEntry(e, entity.id)} buttonText="Delete" />;
       }
     });
 
@@ -66,14 +66,14 @@ const mapStateToProps = (state, ownProps) => ({
 });
 
 const mapDispatchToProps = {
-  deleteNewsItem: removeNews,
+  deleteNewsEntry,
 };
 
 CatPage.propTypes = {
   news: PropTypes.array.isRequired,
   newsCategories: PropTypes.array.isRequired,
   categoryId: PropTypes.string.isRequired,
-  deleteNewsItem: PropTypes.func.isRequired,
+  deleteNewsEntry: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CatPage);

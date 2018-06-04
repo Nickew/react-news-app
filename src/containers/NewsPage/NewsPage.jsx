@@ -2,8 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { removeNews } from '../../actions/removeNews';
-import { likeNews } from '../../actions/likeNews';
+import { deleteNewsEntry, likeNewsEntry } from '../../actions/newsActions';
 import MainContainer from '../../components/MainContainer';
 import News from '../../components/News';
 import Item from '../../components/News/Item';
@@ -14,18 +13,18 @@ class NewsPage extends React.PureComponent {
   constructor(props) {
     super(props);
 
-    this.deleteNewsItem = this.deleteNewsItem.bind(this);
-    this.likeNewsItem = this.likeNewsItem.bind(this);
+    this.deleteNewsEntry = this.deleteNewsEntry.bind(this);
+    this.likeNewsEntry = this.likeNewsEntry.bind(this);
   }
 
-  deleteNewsItem(e, index) {
+  deleteNewsEntry(e, index) {
     e.preventDefault();
-    this.props.deleteNewsItem(index);
+    this.props.deleteNewsEntry(index);
   }
 
-  likeNewsItem(e, id) {
+  likeNewsEntry(e, id) {
     e.preventDefault();
-    this.props.likeNewsItem(id);
+    this.props.likeNewsEntry(id);
   }
 
   render() {
@@ -40,9 +39,9 @@ class NewsPage extends React.PureComponent {
         title={entity.title}
         message={entity.message}
         key={entity.id}
-        onClick={(e) => this.deleteNewsItem(e, entity.id)}
+        onClick={(e) => this.deleteNewsEntry(e, entity.id)}
         buttonText="Delete"
-        likeOnClick={(e) => this.likeNewsItem(e, entity.id)}
+        likeOnClick={(e) => this.likeNewsEntry(e, entity.id)}
         likeButtonText="Like!"
         likes={entity.likes}
       />));
@@ -66,15 +65,15 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
-  deleteNewsItem: removeNews,
-  likeNewsItem: likeNews,
+  deleteNewsEntry,
+  likeNewsEntry,
 };
 
 NewsPage.propTypes = {
   news: PropTypes.array.isRequired,
   newsCategories: PropTypes.array.isRequired,
-  deleteNewsItem: PropTypes.func.isRequired,
-  likeNewsItem: PropTypes.func,
+  deleteNewsEntry: PropTypes.func.isRequired,
+  likeNewsEntry: PropTypes.func,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(NewsPage);
