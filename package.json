@@ -1,15 +1,16 @@
 {
-  "name": "reactjs-boilerplate",
+  "name": "react-news-app",
   "version": "1.0.0",
-  "description": "ReactJS-boilerplate using Webpack, Express.",
+  "description": "Building ReactJS kind of news website.",
   "main": "server/index.js",
   "repository": {
     "type": "git",
     "url": "git://github.com/Nickew/reactjs-boilerplate.git"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "cross-env NODE_ENV=development nodemon --exec babel-node server/index.js"
+    "clean": "rimraf build",
+    "start": "cross-env NODE_ENV=development babel-node server",
+    "prod": "cross-env npm run clean NODE_ENV=production && webpack --config webpack/webpack.prod.babel.js"
   },
   "author": "Nickew",
   "license": "ISC",
@@ -169,7 +170,7 @@
     "ngrok": "^3.0.1",
     "node-sass": "^4.9.0",
     "nodemon": "^1.17.4",
-    "offline-plugin": "^5.0.2",
+    "rimraf": "^2.6.2",
     "sass-loader": "^7.0.1",
     "style-loader": "^0.21.0",
     "url-loader": "^1.0.1",

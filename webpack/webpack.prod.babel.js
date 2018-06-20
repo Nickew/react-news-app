@@ -1,7 +1,6 @@
 import path from 'path';
 import webpack from 'webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
-import OfflinePlugin from 'offline-plugin';
 
 module.exports = require('./webpack.base.babel')({
   entry: [
@@ -14,6 +13,11 @@ module.exports = require('./webpack.base.babel')({
   },
 
   plugins: [
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify('production'),
+      },
+    }),
     new webpack.optimize.ModuleConcatenationPlugin(),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
@@ -21,7 +25,13 @@ module.exports = require('./webpack.base.babel')({
       minChunks: 2,
       async: true,
     }),
-
+    new webpack.LoaderOptionsPlugin({
+      minimize: true,
+      debug: false,
+    }),
+    new webpack.optimize.UglifyJsPlugin({
+      beautify: false,
+    }),
     new HtmlWebpackPlugin({
       template: 'src/index.html',
       minify: {
@@ -37,22 +47,6 @@ module.exports = require('./webpack.base.babel')({
         minifyURLs: true,
       },
       inject: true,
-    }),
-
-    new OfflinePlugin({
-      relativePath: false,
-      publicPath: '/',
-
-      excludes: ['.htaccess'],
-
-      caches: {
-        main: [':rest:'],
-
-        additional: ['*.chunk.js'],
-      },
-      safeToUseOptionalCaches: true,
-
-      AppCache: false,
     }),
   ],
 });

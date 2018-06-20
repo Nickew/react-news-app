@@ -4,7 +4,7 @@ import Helmet from 'react-helmet';
 const HomePage = () => (
   <div>
     <Helmet>
-      <title>Main page - React.js Boilerplate</title>
+      <title>Main page - NewsAPP</title>
     </Helmet>
     <h2>Home</h2>
   </div>

@@ -6,7 +6,7 @@ class AboutPage extends React.PureComponent { // eslint-disable-line react/prefe
     return (
       <div>
         <Helmet>
-          <title>About Page - React.js Boilerplate</title>
+          <title>About Page - NewsAPP</title>
         </Helmet>
         <h2>About</h2>
       </div>

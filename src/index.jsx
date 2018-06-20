@@ -6,7 +6,7 @@ import history from './utils/history';
 import App from './containers/App';
 
 // Import store configuration
-import configureStore from './configureStore';
+import configureStore from './utils/configureStore';
 
 // Import CSS normalize
 import 'normalize.css'; // eslint-disable-line

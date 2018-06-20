@@ -18,8 +18,8 @@ import './styles.scss';
 export default function App() {
   return (
     <div className="app-wrapper" >
-      <Helmet defaultTitle="React.js - Boilerplate">
-        <meta name="description" content="A React.js Boilerplate application" />
+      <Helmet defaultTitle="NewsAPP">
+        <meta name="description" content="" />
       </Helmet>
       <Header>
         <NavMenu>
