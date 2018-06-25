@@ -9,7 +9,7 @@
   },
   "scripts": {
     "clean": "rimraf build",
-    "start": "cross-env NODE_ENV=development babel-node server",
+    "start": "cross-env NODE_ENV=development nodemon --exec babel-node server",
     "prod": "cross-env npm run clean NODE_ENV=production && webpack --config webpack/webpack.prod.babel.js"
   },
   "author": "Nickew",
@@ -130,6 +130,7 @@
     "express": "^4.16.3",
     "history": "^4.7.2",
     "minimist": "^1.2.0",
+    "node-fetch": "^2.1.2",
     "normalize.css": "^8.0.0",
     "prop-types": "^15.6.1",
     "react": "^16.3.2",
@@ -169,7 +170,7 @@
     "image-webpack-loader": "^4.2.0",
     "ngrok": "^3.0.1",
     "node-sass": "^4.9.0",
-    "nodemon": "^1.17.4",
+    "nodemon": "^1.17.5",
     "rimraf": "^2.6.2",
     "sass-loader": "^7.0.1",
     "style-loader": "^0.21.0",
