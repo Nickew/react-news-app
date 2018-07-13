@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import history from '../../../utils/history';
 import validateInput from '../../../../server/shared/validations/signup';
 import Form from '../../../components/Form';
@@ -13,11 +14,11 @@ class SignupForm extends React.Component {
     super(props);
 
     this.state = {
-      login: '',
+      username: '',
       email: '',
       password: '',
-      errors: {},
     };
+
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
@@ -27,53 +28,28 @@ class SignupForm extends React.Component {
   }
 
   onSubmit(e) {
+    const { email, error, password } = this.state;
+    if (!error) {
+      this.props.createNewUser(email, password);
+    }
+
+    console.log(this.props.user);
     e.preventDefault();
-
-    if (this.isValid()) {
-      this.setState({ errors: {} });
-      this.props.userSignupRequest(this.state).then(
-        () => {
-          this.props.addFlashMessage({
-            type: 'success',
-            text: 'You signed up successfully. Welcome.',
-          });
-          history.push('/');
-        },
-        ({ response }) => this.setState({ errors: response.data })
-      );
-    } else {
-      this.props.addFlashMessage({
-        type: 'fail',
-        text: 'ERROR',
-      });
-    }
   }
-
-  isValid() {
-    const { errors, isValid } = validateInput(this.state);
-
-    if (!isValid) {
-      this.setState({ errors });
-    }
-
-    return isValid;
-  }
-
+  // BUG: store.user returns empty object on first request
   render() {
-    const { errors } = this.state;
     return (
       <Form onSubmit={this.onSubmit}>
+        {/* <p>{ userResponse.logged === false ? userResponse.message : 'ACCESS GRANTED!' }</p> */}
         <Input
-          inputID="signup-login"
-          value={this.state.login}
+          inputID="signup-username"
+          value={this.state.username}
           onChange={this.onChange}
-          placeholder="Username..."
+          placeholder="User"
           labelText="Username"
-          name="login"
+          name="username"
         >
-          { errors.login && <span className="text--error">{errors.login}</span> }
         </Input>
-
         <Input
           inputID="signup-email"
           value={this.state.email}
@@ -82,17 +58,15 @@ class SignupForm extends React.Component {
           labelText="Email"
           name="email"
         >
-          { errors.email && <span className="text--error">{errors.email}</span> }
         </Input>
         <Input
           inputID="signup-password"
           value={this.state.password}
           onChange={this.onChange}
-          placeholder="Password..."
+          placeholder="qwerty"
           labelText="Password"
           name="password"
         >
-          { errors.password && <span className="text--error">{errors.password}</span> }
         </Input>
         <Button type="submit" buttonText="Sign up" className="button--accept-b" />
       </Form>
@@ -100,9 +74,14 @@ class SignupForm extends React.Component {
   }
 }
 
+const mapStateToProps = (state) => ({
+  user: state.user,
+});
+
 SignupForm.propTypes = {
-  userSignupRequest: PropTypes.func.isRequired,
+  createNewUser: PropTypes.func.isRequired,
   addFlashMessage: PropTypes.func.isRequired,
+  user: PropTypes.object,
 };
 
-export default SignupForm;
+export default connect(mapStateToProps, null)(SignupForm);

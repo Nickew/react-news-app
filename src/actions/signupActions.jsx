@@ -1,7 +1,18 @@
-import axios from 'axios';
+import * as types from '../constants/signupTypes';
+import { auth } from '../firebase/auth';
 
-export function userSignupRequest(userData) {
-  return (dispatch) => {
-    return axios.post('/api/users', userData);
-  };
-}
+export const createNewUser = (email, password) => (dispatch) => {
+  auth.createNewUser(email, password)
+    .then((response) => dispatch(signUpSuccess(response)))
+    .catch((error) => dispatch(signUpFailure(error)));
+};
+
+export const signUpSuccess = (response) => ({
+  type: types.SIGNUP_SUCCESS,
+  user: response,
+});
+
+export const signUpFailure = (error) => ({
+  type: types.SIGNUP_FAILURE,
+  error,
+});

@@ -4,7 +4,8 @@ build
 node_modules
 stats.json
 package-lock.json
-
+.prettierrc
+server/shared/auth/config
 # Cruft
 .DS_Store
 npm-debug.log

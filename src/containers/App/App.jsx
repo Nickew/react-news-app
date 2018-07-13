@@ -1,6 +1,7 @@
 import React from 'react';
 import { Switch, Route, Link } from 'react-router-dom';
 import Helmet from 'react-helmet';
+import * as routes from '../../constants/routes';
 import HomePage from '../HomePage';
 import NewsPage from '../NewsPage';
 import AboutPage from '../AboutPage';
@@ -23,23 +24,23 @@ export default function App() {
       </Helmet>
       <Header>
         <NavMenu>
-          <Link to="/">Home</Link>
-          <Link to="/news">News</Link>
-          <Link to="/about">About</Link>
-          <Link to="/news/add-entry">Add news</Link>
-          <Link to="/signup">Sign up</Link>
+          <Link to={routes.MAIN_PAGE}>Home</Link>
+          <Link to={routes.NEWS_PAGE}>News</Link>
+          <Link to={routes.ABOUT_PAGE}>About</Link>
+          <Link to={routes.ADD_NEWS_PAGE}>Add news</Link>
+          <Link to={routes.SIGN_PAGE}>Sign Up</Link>
         </NavMenu>
       </Header>
       <FlashMessagesList />
       <Main>
         <Switch>
-          <Route exact path="/" component={HomePage} />
-          <Route exact path="/news/" component={NewsPage} />
-          <Route exact path="/news/add-entry" component={AddEntryPage} />
-          <Route path="/news/category/:id" component={CatPage} />
-          <Route path="/news/:id" component={EntryPage} />
-          <Route path="/about" component={AboutPage} />
-          <Route path="/signup" component={SignupPage} />
+          <Route exact path={routes.MAIN_PAGE} component={HomePage} />
+          <Route exact path={routes.NEWS_PAGE} component={NewsPage} />
+          <Route exact path={routes.ABOUT_PAGE} component={AboutPage} />
+          <Route exact path={routes.ADD_NEWS_PAGE} component={AddEntryPage} />
+          <Route path={`${routes.NEWS_CAT_PAGE}/:id`} component={CatPage} />
+          <Route path={`${routes.NEWS_PAGE}/:id`} component={EntryPage} />
+          <Route path={routes.SIGN_PAGE} component={SignupPage} />
         </Switch>
       </Main>
     </div>

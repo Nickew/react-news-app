@@ -2,27 +2,29 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import SignupForm from './SignupForm';
-import { userSignupRequest } from '../../actions/signupActions';
+import { createNewUser } from '../../actions/signupActions';
 import { addFlashMessage } from '../../actions/flashMessages';
 
 class SignupPage extends React.PureComponent {
   render() {
     return (
-      <SignupForm
-        userSignupRequest={this.props.userSignupRequest}
-        addFlashMessage={this.props.addFlashMessage}
-      />
+      <div className="signup-section">
+        <SignupForm
+          createNewUser={this.props.createNewUser}
+          addFlashMessage={this.props.addFlashMessage}
+        />
+      </div>
     );
   }
 }
 
 SignupPage.propTypes = {
-  userSignupRequest: PropTypes.func.isRequired,
+  createNewUser: PropTypes.func.isRequired,
   addFlashMessage: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = {
-  userSignupRequest,
+  createNewUser,
   addFlashMessage,
 };
 

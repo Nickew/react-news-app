@@ -12,14 +12,15 @@ const future = (req, res) => {
       const dataArray = data.match(regex);
       const dataLength = dataArray.length;
       // TODO: find and parse title by link
-      for (let i = 0; i < dataLength; i++) {
-        if (/(a href=)+/g.exec(dataArray[i])) {
-          futureStories = [...futureStories, {
-            link: /(\/future)+([a-zA-Z0-9/-]+)/.exec(dataArray[i])[0],
-          }];
-        }
-      }
-
+      // for (let i = 0; i < dataLength; i++) {
+      //   if (/(a href=)+/g.exec(dataArray[i])) {
+      //     futureStories = [...futureStories, {
+      //       link: /(\/future)+([a-zA-Z0-9/-]+)/.exec(dataArray[i])[0],
+      //     }];
+      //   }
+      // }
+      
+      futureStories = data.split(',');
       res.send(futureStories);
     })
     .catch((error) => {
