@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { createNewUser } from '../../../actions/signupActions';
 import history from '../../../utils/history';
 import validateInput from '../../../../server/shared/validations/signup';
 import Form from '../../../components/Form';
@@ -23,6 +24,11 @@ class SignupForm extends React.Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
 
+  // TODO: implement getDerivedStateFromProps, instead of UNSAFE_cWRP
+  componentWillReceiveProps(nextProps) {
+    this.receiveResponse(nextProps.user);
+  }
+
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
@@ -33,14 +39,26 @@ class SignupForm extends React.Component {
       this.props.createNewUser(email, password);
     }
 
-    console.log(this.props.user);
     e.preventDefault();
   }
-  // BUG: store.user returns empty object on first request
+
+  receiveResponse(response) {
+    if (response.logged === true) {
+      this.props.addFlashMessage({
+        type: 'success',
+        text: 'You\'re signed up successfully',
+      });
+    } else {
+      this.props.addFlashMessage({
+        type: 'fail',
+        text: response.error.message,
+      });
+    }
+  }
+
   render() {
     return (
       <Form onSubmit={this.onSubmit}>
-        {/* <p>{ userResponse.logged === false ? userResponse.message : 'ACCESS GRANTED!' }</p> */}
         <Input
           inputID="signup-username"
           value={this.state.username}
@@ -78,10 +96,14 @@ const mapStateToProps = (state) => ({
   user: state.user,
 });
 
+const mapDispatchToProps = {
+  createNewUser,
+};
+
 SignupForm.propTypes = {
   createNewUser: PropTypes.func.isRequired,
   addFlashMessage: PropTypes.func.isRequired,
   user: PropTypes.object,
 };
 
-export default connect(mapStateToProps, null)(SignupForm);
+export default connect(mapStateToProps, mapDispatchToProps)(SignupForm);
