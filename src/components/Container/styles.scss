@@ -26,4 +26,19 @@
   &--flex-jc-end {
     justify-content: flex-end;
   }
+  &--flex-ai-center {
+    align-items: center;
+  }
+  &--flex-ai-start {
+    align-items: flex-start;
+  }
+  &--flex-ai-end {
+    align-items: flex-end;
+  }
+  &--flex-ai-baseline {
+    align-items: baseline;
+  }
+  &--flex-ai-stretch {
+    align-items: stretch;
+  }
 }
