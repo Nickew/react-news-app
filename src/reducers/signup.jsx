@@ -1,4 +1,4 @@
-import * as types from '../constants/signupTypes';
+import * as types from '../constants/authTypes';
 
 const initialState = {};
 
@@ -11,6 +11,18 @@ const SignUpReducer = (state = initialState, action) => {
         uid: action.user.uid,
       };
     case types.SIGNUP_FAILURE:
+      return {
+        ...state,
+        logged: false,
+        error: action.error,
+      };
+    case types.SIGNIN_SUCCESS:
+      return {
+        ...state,
+        logged: true,
+        uid: action.user.uid,
+      };
+    case types.SIGNIN_FAILURE:
       return {
         ...state,
         logged: false,
