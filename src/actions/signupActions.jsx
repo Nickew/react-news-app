@@ -18,6 +18,16 @@ export const signUpSuccess = (response) => ({
   user: response,
 });
 
+export const isAuthorized = () => (dispatch) => {
+  auth.onAuthStateChanged((user) => {
+    if (user) {
+      dispatch(signInSuccess(user));
+    } else {
+      dispatch(signInFailure(user));
+    }
+  });
+};
+
 export const signUpFailure = (error) => ({
   type: types.SIGNUP_FAILURE,
   error,

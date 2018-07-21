@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { createNewUser, signInUser } from '../../../actions/signupActions';
+import { createNewUser, signInUser, isAuthorized } from '../../../actions/signupActions';
 import history from '../../../utils/history';
 import validateInput from '../../../../server/shared/validations/signup';
 import Container from '../../../components/Container';
@@ -28,9 +28,14 @@ class SignupForm extends React.Component {
     this.onSignIn = this.onSignIn.bind(this);
   }
 
-  // TODO: implement getDerivedStateFromProps or componentDidUpdate, instead of UNSAFE_cWRP
-  componentWillReceiveProps(nextProps) {
-    this.receiveResponse(nextProps.user);
+  componentDidMount() {
+    this.props.isAuthorized();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.user !== prevProps.user) {
+      this.receiveResponse(this.props.user);
+    }
   }
 
   onChange(e) {
@@ -132,6 +137,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
   createNewUser,
   signInUser,
+  isAuthorized,
 };
 
 SignupForm.propTypes = {
@@ -139,6 +145,7 @@ SignupForm.propTypes = {
   signInUser: PropTypes.func.isRequired,
   addFlashMessage: PropTypes.func.isRequired,
   user: PropTypes.object,
+  isAuthorized: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignupForm);

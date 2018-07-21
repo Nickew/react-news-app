@@ -7,7 +7,7 @@ const SignUpReducer = (state = initialState, action) => {
     case types.SIGNUP_SUCCESS:
       return {
         ...state,
-        logged: true,
+        logged: false,
         uid: action.user.uid,
       };
     case types.SIGNUP_FAILURE:
@@ -20,7 +20,7 @@ const SignUpReducer = (state = initialState, action) => {
       return {
         ...state,
         logged: true,
-        uid: action.user.uid,
+        user: action.user,
       };
     case types.SIGNIN_FAILURE:
       return {
