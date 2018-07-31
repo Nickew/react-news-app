@@ -23,7 +23,7 @@ export const isAuthorized = () => (dispatch) => {
     if (user) {
       dispatch(signInSuccess(user));
     } else {
-      dispatch(signInFailure(user));
+      dispatch(signInSuccess(user));
     }
   });
 };

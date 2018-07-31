@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { createNewUser, signInUser, isAuthorized } from '../../../actions/signupActions';
+import { createNewUser, signInUser } from '../../../actions/signupActions';
 import history from '../../../utils/history';
 import validateInput from '../../../../server/shared/validations/signup';
 import Container from '../../../components/Container';
@@ -26,10 +26,6 @@ class SignupForm extends React.Component {
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
     this.onSignIn = this.onSignIn.bind(this);
-  }
-
-  componentDidMount() {
-    this.props.isAuthorized();
   }
 
   componentDidUpdate(prevProps) {
@@ -58,7 +54,7 @@ class SignupForm extends React.Component {
   }
 
   receiveResponse(response) {
-    if (response.logged === true) {
+    if (response.complete === true) {
       this.props.addFlashMessage({
         type: 'success',
         text: 'You\'re signed up successfully',
@@ -137,7 +133,6 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
   createNewUser,
   signInUser,
-  isAuthorized,
 };
 
 SignupForm.propTypes = {
@@ -145,7 +140,6 @@ SignupForm.propTypes = {
   signInUser: PropTypes.func.isRequired,
   addFlashMessage: PropTypes.func.isRequired,
   user: PropTypes.object,
-  isAuthorized: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignupForm);

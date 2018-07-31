@@ -3,6 +3,7 @@ import { Switch, Route, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
+import { isAuthorized } from '../../actions/signupActions';
 import * as routes from '../../constants/routes';
 import HomePage from '../HomePage';
 import NewsPage from '../NewsPage';
@@ -15,7 +16,7 @@ import Header from '../../components/Header';
 import NavMenu from '../../components/Header/NavMenu';
 import Main from '../../components/Main';
 import FlashMessagesList from '../FlashMessagesList';
-import { isAuthorized } from '../../actions/signupActions';
+
 import './styles.scss';
 
 class App extends React.Component {
@@ -57,6 +58,7 @@ class App extends React.Component {
 
 const mapStateToProps = (state) => ({
   user: state.user,
+  routing: state.routing,
 });
 
 const mapDispatchToProps = {
